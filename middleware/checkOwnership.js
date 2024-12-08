@@ -11,7 +11,7 @@ const checkArtworkOwnership = async (req, res, next) => {
       return res.status(404).json({ message: "Artwork not found" });
     }
 
-    if (artwork.artist.toString() !== userId) {
+    if (artwork.artistId.toString() !== userId) {
       // Check if the artist ID matches the user ID
       return res
         .status(403)

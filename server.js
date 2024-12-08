@@ -12,12 +12,13 @@ const artworkRoutes = require("./routes/artwork");
 const commentRoutes = require("./routes/comments");
 const likeRoutes = require("./routes/likes");
 const orderRoutes = require("./routes/orders");
-
-
-
+const userRoutes = require("./routes/user");
 // Initialize Express app
 const app = express();
+const path = require("path");
 
+// ... other middleware ...
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -28,10 +29,14 @@ app.use("/artwork", artworkRoutes);
 app.use("/artwork", commentRoutes);
 app.use("/artwork", likeRoutes);
 app.use("/orders", orderRoutes);
-
+app.use("/user", userRoutes);
+//root route
+app.use("/", (req, res) => {
+  res.send("Welcome to the Virtual Art Gallery API");
+});
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

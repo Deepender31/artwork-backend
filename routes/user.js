@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { getUserWithArtworks, getUsersWithArtworks } = require('../controllers/userController');
+const { getUserWithArtworks, getAllArtist } = require("../controllers/userController");
 
-router.get('/:userId', getUserWithArtworks);
-router.get('/', getUsersWithArtworks);
+router.get("/:userId", getUserWithArtworks);
+router.get("/", getAllArtist);
 
-module.exports = router; 
+module.exports = router;
